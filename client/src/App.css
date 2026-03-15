@@ -1,0 +1,272 @@
+.App {
+  font-family: Arial, sans-serif;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.App-header nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.App-header nav li {
+  margin-right: 20px;
+}
+
+.App-header nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.App-header nav a:hover {
+  text-decoration: underline;
+}
+
+
+
+.cta-button {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+.upload-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  margin-top: 1rem
+
+}
+
+.upload-container h2 {
+  color: #e0e0e0;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.csv-template {
+  background-color: #2c2c2c;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #333;
+}
+
+.csv-template h3 {
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.csv-template pre {
+  background-color: #121212;
+  color: #4285F4;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.csv-template p {
+  color: #a0a0a0;
+  margin: 0.5rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="file"] {
+  color: #e0e0e0;
+  background-color: #2c2c2c;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  width: 100%;
+  max-width: 400px;
+}
+button[type="button"] {
+  background-color: white;
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  align-self: center;
+  max-width: 200px;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #3367D6;
+}
+
+button[type="submit"] {
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  align-self: center;
+  max-width: 200px;
+}
+
+button[type="submit"]:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #3367D6;
+}
+
+.message {
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.message:not(.error) {
+  background-color: rgba(66, 133, 244, 0.1);
+  color: #4285F4;
+}
+
+.message.error {
+  background-color: rgba(234, 67, 53, 0.1);
+  color: #EA4335;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #1e1e1e;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.App-header h1 {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: #a0a0a0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+nav ul li a:hover {
+  color: #4285F4;
+}
+
+nav ul li a.active {
+  color: #4285F4;
+  font-weight: bold;
+}
+
+main {
+  flex-grow: 1;
+}
+
+.home-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-top: 1rem
+}
+
+.home-container h2 {
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.home-container p {
+  color: #a0a0a0;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #4285F4;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #3367D6;
+}
