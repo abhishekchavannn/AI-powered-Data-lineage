@@ -1,0 +1,51 @@
+source_system,source_dataset,source_attribute,transformation_type,transformation_logic,target_system,target_dataset,target_attribute,metadata
+CRM,customer_master,customer_id,Direct Mapping,customer_id,MDM,customer_golden_record,customer_id,PK
+CRM,customer_master,email,Standardization,lower(trim(email)),MDM,customer_golden_record,email,PII
+CRM,customer_master,phone,Format,normalize_phone(phone),MDM,customer_golden_record,phone,PII
+ERP,sales_order,order_id,Direct Mapping,order_id,ODS,sales_order_stg,order_id,
+ERP,sales_order,customer_id,Lookup,customer_id -> MDM,ODS,sales_order_stg,customer_id,
+ERP,sales_order,order_amount,Direct Mapping,order_amount,ODS,sales_order_stg,order_amount,
+ECommerce,web_orders,order_id,Union,ERP + Web Orders,ODS,sales_order_stg,order_id,
+ECommerce,web_orders,customer_email,Lookup,email -> customer_id,ODS,sales_order_stg,customer_id,
+ODS,sales_order_stg,order_amount,Aggregation,sum(order_amount),EDW,fact_sales,gross_sales,Daily Load
+ODS,sales_order_stg,order_id,Count,count(order_id),EDW,fact_sales,order_count,Daily Load
+MDM,customer_golden_record,customer_id,Direct Mapping,customer_id,EDW,dim_customer,customer_key,SCD2
+MDM,customer_golden_record,email,Direct Mapping,email,EDW,dim_customer,email,
+Finance,payments,payment_id,Direct Mapping,payment_id,ODS,payment_stg,payment_id,
+Finance,payments,amount,Direct Mapping,amount,ODS,payment_stg,amount,
+ODS,payment_stg,amount,Aggregation,sum(amount),EDW,fact_payment,payment_amount,
+EDW,fact_sales,gross_sales,Aggregation,sum(gross_sales),DataMart,sales_mart,monthly_sales,Monthly
+EDW,fact_sales,order_count,Aggregation,sum(order_count),DataMart,sales_mart,monthly_orders,Monthly
+EDW,dim_customer,customer_key,Join,join fact_sales,DataMart,customer_360,customer_key,
+Support,tickets,ticket_id,Direct Mapping,ticket_id,ODS,ticket_stg,ticket_id,
+Support,tickets,customer_id,Direct Mapping,customer_id,ODS,ticket_stg,customer_id,
+ODS,ticket_stg,ticket_id,Count,count(ticket_id),EDW,fact_support,ticket_count,
+EDW,fact_support,ticket_count,Join,join customer,DataMart,customer_360,ticket_count,
+Marketing,campaign_response,customer_id,Direct Mapping,customer_id,ODS,campaign_stg,customer_id,
+Marketing,campaign_response,campaign_id,Direct Mapping,campaign_id,ODS,campaign_stg,campaign_id,
+ODS,campaign_stg,campaign_id,Count,count(campaign_id),EDW,fact_campaign,response_count,
+EDW,fact_campaign,response_count,Join,join customer,DataMart,customer_360,campaign_responses,
+DataMart,customer_360,customer_key,Direct Mapping,customer_key,BI,PowerBI_CustomerDashboard,customer_key,
+DataMart,customer_360,ticket_count,Direct Mapping,ticket_count,BI,PowerBI_CustomerDashboard,ticket_count,
+DataMart,sales_mart,monthly_sales,Direct Mapping,monthly_sales,BI,ExecutiveDashboard,monthly_sales,
+DataMart,sales_mart,monthly_orders,Direct Mapping,monthly_orders,BI,ExecutiveDashboard,monthly_orders,
+IoT_POS,terminal_events_1,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_1,daily_amount,Streaming
+IoT_POS,terminal_events_2,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_2,daily_amount,Streaming
+IoT_POS,terminal_events_3,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_3,daily_amount,Streaming
+IoT_POS,terminal_events_4,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_4,daily_amount,Streaming
+IoT_POS,terminal_events_5,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_5,daily_amount,Streaming
+IoT_POS,terminal_events_6,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_6,daily_amount,Streaming
+IoT_POS,terminal_events_7,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_7,daily_amount,Streaming
+IoT_POS,terminal_events_8,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_8,daily_amount,Streaming
+IoT_POS,terminal_events_9,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_9,daily_amount,Streaming
+IoT_POS,terminal_events_10,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_10,daily_amount,Streaming
+IoT_POS,terminal_events_11,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_11,daily_amount,Streaming
+IoT_POS,terminal_events_12,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_12,daily_amount,Streaming
+IoT_POS,terminal_events_13,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_13,daily_amount,Streaming
+IoT_POS,terminal_events_14,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_14,daily_amount,Streaming
+IoT_POS,terminal_events_15,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_15,daily_amount,Streaming
+IoT_POS,terminal_events_16,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_16,daily_amount,Streaming
+IoT_POS,terminal_events_17,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_17,daily_amount,Streaming
+IoT_POS,terminal_events_18,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_18,daily_amount,Streaming
+IoT_POS,terminal_events_19,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_19,daily_amount,Streaming
+IoT_POS,terminal_events_20,transaction_amount,Aggregation,sum(transaction_amount),EDW,fact_pos_sales_20,daily_amount,Streaming
