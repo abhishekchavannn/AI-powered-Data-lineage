@@ -1,0 +1,16 @@
+sourceSystem,sourceDataset,sourceAttribute,transformationType,transformationLogic,targetSystem,targetDataset,targetAttribute,metadata
+MySQL,users,id,DIRECT_COPY,id,DataWarehouse,dim_users,user_id,primary key mapping
+MySQL,users,first_name,TRANSFORM,concat(first_name,' ',last_name),DataWarehouse,dim_users,full_name,name standardization
+MySQL,users,email,DIRECT_COPY,email,DataWarehouse,dim_users,email,user email mapping
+MySQL,users,created_at,FORMAT_CHANGE,DATE(created_at),DataWarehouse,dim_users,signup_date,date normalization
+MySQL,orders,order_id,DIRECT_COPY,order_id,DataWarehouse,fact_orders,order_id,primary key mapping
+MySQL,orders,user_id,DIRECT_COPY,user_id,DataWarehouse,fact_orders,user_id,foreign key mapping
+MySQL,orders,total_amount,AGGREGATION,sum(total_amount),DataWarehouse,fact_orders,total_revenue,revenue aggregation
+MySQL,orders,created_at,FORMAT_CHANGE,DATE(created_at),DataWarehouse,fact_orders,order_date,date normalization
+DataWarehouse,fact_orders,total_revenue,AGGREGATION,sum(total_revenue),AnalyticsDB,daily_sales,total_sales,daily sales aggregation
+DataWarehouse,fact_orders,order_date,DIRECT_COPY,order_date,AnalyticsDB,daily_sales,sale_date,date mapping
+DataWarehouse,dim_users,user_id,DIRECT_COPY,user_id,AnalyticsDB,user_metrics,user_id,user mapping
+DataWarehouse,dim_users,signup_date,DIRECT_COPY,signup_date,AnalyticsDB,user_metrics,signup_date,user signup tracking
+DataWarehouse,fact_orders,order_id,COUNT,count(order_id),AnalyticsDB,user_metrics,total_orders,total order count
+AnalyticsDB,daily_sales,total_sales,DIRECT_COPY,total_sales,Dashboard,sales_dashboard,revenue,visualization feed
+AnalyticsDB,user_metrics,total_orders,DIRECT_COPY,total_orders,Dashboard,user_dashboard,orders,user analytics
